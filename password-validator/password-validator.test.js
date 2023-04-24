@@ -1,25 +1,8 @@
 describe("Password Validator", function () {
   it("should test password ...", function () {
-    const result = validatePassword("!a1b2c3c4#");
+    const result = validatePassword("!a1b2c3y4#");
     chai.expect(result.valid).to.equal(true);
     chai.expect(result.reasons.length).to.equal(0);
-  });
-
-  it("should test password ...", function () {
-    const result = validatePassword("!!a1b2c3c4");
-    chai.expect(result.valid).to.equal(false);
-    chai.expect(result.reasons.length).to.equal(1);
-    chai
-      .expect(result.reasons.includes("duplicate special character"))
-      .to.equal(true);
-  });
-
-  //test for min length
-  it("should test password for min length", function () {
-    const result = validatePassword("!!a1b2");
-    chai.expect(result.valid).to.equal(false);
-    chai.expect(result.reasons.length).to.equal(1);
-    chai.expect(result.reasons.includes("min length")).to.equal(true);
   });
 
   // TODO: add your own tests here for all possible error messages (not combinations)

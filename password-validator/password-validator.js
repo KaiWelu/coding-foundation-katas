@@ -1,5 +1,4 @@
 function validatePassword(password) {
-  const input = password.split("");
   //creating the output object
   const outputObject = {
     valid: false,
@@ -33,9 +32,9 @@ function validatePassword(password) {
     duplicateChar.forEach((element) => {
       duplicateCharSet.add(element);
     });
-  }
-  if (duplicateChar.length !== duplicateCharSet.size) {
-    outputObject.reasons.push("duplicate character");
+    if (duplicateChar.length !== duplicateCharSet.size) {
+      outputObject.reasons.push("duplicate character");
+    }
   }
 
   //duplicate number
@@ -49,6 +48,7 @@ function validatePassword(password) {
       outputObject.reasons.push("duplicate number");
     }
   }
+
   //duplicate special character
   const duplicateSpecial = password.match(/\!|\?|\#/g);
   const duplicateSpecialSet = new Set();
@@ -63,30 +63,23 @@ function validatePassword(password) {
 
   //this is based on UTF-16 https://en.wikipedia.org/wiki/UTF-16
 
-  //consecutive char
-  if (duplicateChar !== null) {
-    //convert everything to lower case
-    duplicateChar = duplicateChar.map((element) => element.toLowerCase());
+  const input = password.toLowerCase().split("");
 
-    for (let i = 0; i < duplicateChar.length - 1; i++) {
-      if (
-        duplicateChar[i].charCodeAt() + 1 ===
-        duplicateChar[i + 1].charCodeAt()
-      ) {
-        outputObject.reasons.push("consecutive character");
+  //consecutive chars
+  for (let i = 0; i < input.length - 1; i++) {
+    if (input[i].charCodeAt() + 1 === input[i + 1].charCodeAt()) {
+      if (input[i].match(/[0-9]/) !== null) {
+        outputObject.reasons.push("consecutive number");
         break;
       }
     }
   }
 
-  //consecutive number
-  if (duplicateNumber !== null) {
-    for (let i = 0; i < duplicateNumber.length - 1; i++) {
-      if (
-        duplicateNumber[i].charCodeAt() + 1 ===
-        duplicateNumber[i + 1].charCodeAt()
-      ) {
-        outputObject.reasons.push("consecutive number");
+  //consecutive numbers
+  for (let i = 0; i < input.length - 1; i++) {
+    if (input[i].charCodeAt() + 1 === input[i + 1].charCodeAt()) {
+      if (input[i].match(/[a-zA-Z]/) !== null) {
+        outputObject.reasons.push("consecutive character");
         break;
       }
     }
@@ -103,6 +96,6 @@ function validatePassword(password) {
 //console.log(validatePassword("!!!!!!23"));
 //console.log(validatePassword("ab"));
 //console.log(validatePassword("1234568asdasdasdas"));
-console.log(validatePassword("afjlowp#157"));
+console.log(validatePassword("abcdef123"));
 console.log(validatePassword("AbC13"));
 console.log(validatePassword("$SZ@!Qz%fNzP7um"));
