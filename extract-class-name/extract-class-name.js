@@ -25,18 +25,19 @@ function extractClassName(sessionTitle) {
   if (matched[2] === "März") {
     matched[2] = "Maerz";
   }
-  //Assemble correct output format
+  //assemble correct output format
   let monthNumeric = matched[2];
   const year = matched[1];
   months.forEach((element, index) => {
     if (element === monthNumeric) {
+      //add leading zero
       if (index + 1 < 10) {
         monthNumeric = "0" + (index + 1).toString();
       } else {
         monthNumeric = (index + 1).toString();
       }
     } else {
-      return null;
+      return null; // this is not really necessary atm
     }
   });
   return year + "-" + monthNumeric;
