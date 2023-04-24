@@ -65,7 +65,7 @@ function validatePassword(password) {
 
   const input = password.toLowerCase().split("");
 
-  //consecutive chars
+  //consecutive numbers
   for (let i = 0; i < input.length - 1; i++) {
     if (input[i].charCodeAt() + 1 === input[i + 1].charCodeAt()) {
       if (input[i].match(/[0-9]/) !== null) {
@@ -75,7 +75,7 @@ function validatePassword(password) {
     }
   }
 
-  //consecutive numbers
+  //consecutive chars
   for (let i = 0; i < input.length - 1; i++) {
     if (input[i].charCodeAt() + 1 === input[i + 1].charCodeAt()) {
       if (input[i].match(/[a-zA-Z]/) !== null) {
@@ -92,10 +92,4 @@ function validatePassword(password) {
   return outputObject;
 }
 
-//console.log(validatePassword("ab23"));
-//console.log(validatePassword("!!!!!!23"));
-//console.log(validatePassword("ab"));
-//console.log(validatePassword("1234568asdasdasdas"));
-console.log(validatePassword("abcdef123"));
-console.log(validatePassword("AbC13"));
-console.log(validatePassword("$SZ@!Qz%fNzP7um"));
+// console.log(validatePassword("Cwm fjord bank glyphs vext quiz!2"));
