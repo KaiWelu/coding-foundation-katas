@@ -14,6 +14,14 @@ describe("Password Validator", function () {
       .to.equal(true);
   });
 
+  //test for min length
+  it("should test password for min length", function () {
+    const result = validatePassword("!!a1b2");
+    chai.expect(result.valid).to.equal(false);
+    chai.expect(result.reasons.length).to.equal(1);
+    chai.expect(result.reasons.includes("min length")).to.equal(true);
+  });
+
   // TODO: add your own tests here for all possible error messages (not combinations)
 
   // it("should test password ...", function () {
