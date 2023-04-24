@@ -7,7 +7,7 @@ function validatePassword(password) {
   };
 
   // minimum length of 10
-  if (password.length <= 10) {
+  if (password.length < 10) {
     outputObject.reasons.push("min length");
   }
 
@@ -92,7 +92,7 @@ function validatePassword(password) {
     }
   }
 
-  //return the correct object
+  //return the correct object if there are no problems
   if (outputObject.reasons.length === 0) {
     outputObject.valid = true;
   }
@@ -105,3 +105,4 @@ function validatePassword(password) {
 //console.log(validatePassword("1234568asdasdasdas"));
 console.log(validatePassword("afjlowp#157"));
 console.log(validatePassword("AbC13"));
+console.log(validatePassword("$SZ@!Qz%fNzP7um"));
