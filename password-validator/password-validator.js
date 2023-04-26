@@ -78,7 +78,7 @@ function validatePassword(password) {
   //consecutive chars
   for (let i = 0; i < input.length - 1; i++) {
     if (input[i].charCodeAt() + 1 === input[i + 1].charCodeAt()) {
-      if (input[i].match(/[a-zA-Z]/) !== null) {
+      if (input[i].match(/[a-z]/) !== null) {
         outputObject.reasons.push("consecutive character");
         break;
       }
